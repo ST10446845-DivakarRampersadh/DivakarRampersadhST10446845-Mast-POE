@@ -1,31 +1,104 @@
+// App.tsx
+
+/*CODE ATTRIBUTION*/
+/*TITLE: IIE PIXD112 Module Reference Manual 2025*/
+/*AUTHOR: The Independent Institute of Education (Pty) Ltd*/
+/*DATE: 07/11/2025*/
+/*VERSION: 1.0*/
+/*AVAILABLE: https://advtechonline.sharepoint.com */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native – Official Documentation*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 07/11/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/getting-started */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: Expo Documentation – React Native Framework*/
+/*AUTHOR: Expo Documentation Team*/
+/*DATE: 07/11/2025*/
+/*VERSION: 50.0*/
+/*AVAILABLE: https://docs.expo.dev */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Navigation – NavigationContainer*/
+/*AUTHOR: React Navigation Contributors*/
+/*DATE: 07/11/2025*/
+/*VERSION: 6.1*/
+/*AVAILABLE: https://reactnavigation.org/docs/navigation-container */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: KeyboardAvoidingView – React Native Documentation*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 07/11/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/keyboardavoidingview */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native Picker – Community Documentation*/
+/*AUTHOR: React Native Picker Maintainers*/
+/*DATE: 07/11/2025*/
+/*VERSION: 2.6*/
+/*AVAILABLE: https://github.com/react-native-picker/picker */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: React Native Alert API*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 07/11/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/alert */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: FlatList – React Native Component Documentation*/
+/*AUTHOR: Meta Platforms, Inc.*/
+/*DATE: 07/11/2025*/
+/*VERSION: 0.76*/
+/*AVAILABLE: https://reactnative.dev/docs/flatlist */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: MDN Web Docs – JavaScript Array Methods*/
+/*AUTHOR: Mozilla Developer Network (MDN)*/
+/*DATE: 07/11/2025*/
+/*VERSION: N/A*/
+/*AVAILABLE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array */
+
+/*CODE ATTRIBUTION*/
+/*TITLE: W3Schools – JavaScript Syntax Reference*/
+/*AUTHOR: W3Schools.com*/
+/*DATE: 07/11/2025*/
+/*VERSION: N/A*/
+/*AVAILABLE: https://www.w3schools.com/js/js_syntax.asp */
+
+
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
   View,
-  FlatList,
+  FlatList, // Used to display menu items efficiently (Meta Platforms Inc., 2025)
   TextInput,
   TouchableOpacity,
   SafeAreaView,
   Image,
-  Alert,
+  Alert, // Used for simple confirmation messages (Meta Platforms Inc., 2025)
   Keyboard,
   ScrollView,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
+  KeyboardAvoidingView, // Helps manage keyboard overlap (Meta Platforms Inc., 2025)
   Platform,
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native'; // Handles screen transitions (React Navigation Contributors, 2025)
 import {
   createNativeStackNavigator,
   NativeStackScreenProps,
 } from '@react-navigation/native-stack';
-import { Picker } from '@react-native-picker/picker';
+import { Picker } from '@react-native-picker/picker'; // Dropdown selection for categories (React Native Picker Maintainers, 2025)
 import { RootStackParamList, ResItem } from './type';
 
 /**
- * Predefined default cafe items
+ * Predefined default cafe items (Mozilla Developer Network, 2025)
  */
 const predefinedItems: ResItem[] = [
   {
@@ -38,43 +111,41 @@ const predefinedItems: ResItem[] = [
       'https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg',
     ingredients: ['Ground coffee beans', 'Water', 'Milk.'],
   },
-  
   {
-     Nameitem: 'Butternut soup',
+    Nameitem: 'Butternut soup',
     description: 'Rich and warm butternut soup.',
     category: 'Starter',
     Amount: 85,
     intensity: 'Strong',
     image:
       'https://images.pexels.com/photos/13788765/pexels-photo-13788765.jpeg',
-    ingredients: ['Butternut, spices, with a splash of a vinger reduction.'],
+    ingredients: ['Butternut, spices, with a splash of a vinegar reduction.'],
   },
-
-{
-  Nameitem: 'Braised Duck',
-    description: 'Slow braised thender duck with a side of steams potatos .',
+  {
+    Nameitem: 'Braised Duck',
+    description: 'Slow braised tender duck with a side of steamed potatoes.',
     category: 'Mains',
     Amount: 100,
-    intensity: 'Strong ',
+    intensity: 'Strong',
     image:
       'https://images.pexels.com/photos/16975185/pexels-photo-16975185.jpeg',
-    ingredients: ['Duck ', 'Steamed potatos', 'spices.'],
-},
-
-{
-  Nameitem: 'Mixed berry cheesecake',
+    ingredients: ['Duck', 'Steamed potatoes', 'Spices.'],
+  },
+  {
+    Nameitem: 'Mixed berry cheesecake',
     description: 'Rich and creamy cheesecake.',
     category: 'Dessert',
     Amount: 75,
     intensity: 'Strong',
     image:
       'https://images.pexels.com/photos/1126359/pexels-photo-1126359.jpeg',
-    ingredients: ['Cream cheese, Whole Milk, Gram crackers, Butter.'],
-},
+    ingredients: ['Cream cheese', 'Whole milk', 'Graham crackers', 'Butter.'],
+  },
 ];
 
 /**
  * Screen for adding a new menu item
+ * Uses controlled components with React Hooks (React Native Docs, 2025)
  */
 function ManageMenuScreen(
   props: NativeStackScreenProps<RootStackParamList, 'ManageScreen'>
@@ -87,15 +158,15 @@ function ManageMenuScreen(
   const [ingredients, setIngredients] = useState('');
 
   const handleSubmit = () => {
+    // Basic input validation (W3Schools, 2025)
     if (Nameitem && description && category && Amount) {
       const AmountValue = parseFloat(Amount);
 
       if (AmountValue > 0) {
-        // Calculate intensity based on price
+        // Calculates intensity dynamically (MDN, 2025)
         const intensity =
           AmountValue < 45 ? 'Mild' : AmountValue < 65 ? 'Balanced' : 'Strong';
 
-        // Create a new CafeItem object
         const newItem: ResItem = {
           Nameitem,
           description,
@@ -106,13 +177,12 @@ function ManageMenuScreen(
           ingredients: ingredients.split(',').map((i) => i.trim()),
         };
 
-        // Update parent screen state using the passed setter function
         props.route.params.setItems([
           ...props.route.params.items,
           newItem,
         ]);
 
-        props.navigation.goBack();
+        props.navigation.goBack(); // Navigates back after save (React Navigation Contributors, 2025)
       } else {
         Alert.alert('Invalid Price', 'Price must be greater than 0.');
       }
@@ -143,7 +213,7 @@ function ManageMenuScreen(
             onChangeText={setDescription}
           />
 
-          {/* Category Picker */}
+          {/* Category Picker (React Native Picker Maintainers, 2025) */}
           <View style={styles.pickerWrapper}>
             <Text style={styles.label}>Category</Text>
             <View style={styles.pickerContainer}>
@@ -155,11 +225,7 @@ function ManageMenuScreen(
                 style={styles.pickerStyle}
                 itemStyle={{ height: 50 }}
               >
-                <Picker.Item
-                  label="Select a Category"
-                  value=""
-                  color="#999"
-                />
+                <Picker.Item label="Select a Category" value="" color="#999" />
                 <Picker.Item label="Beverage" value="Beverage" />
                 <Picker.Item label="Starter" value="Starter" />
                 <Picker.Item label="Mains" value="Mains" />
@@ -189,15 +255,11 @@ function ManageMenuScreen(
             onChangeText={setImage}
           />
 
-          {/* Image preview */}
           {image ? (
             <Image source={{ uri: image }} style={styles.imagePreview} />
           ) : null}
 
-          <TouchableOpacity
-            style={styles.saveButton}
-            onPress={handleSubmit}
-          >
+          <TouchableOpacity style={styles.saveButton} onPress={handleSubmit}>
             <Text style={styles.saveButtonText}>Save Item</Text>
           </TouchableOpacity>
 
@@ -214,7 +276,8 @@ function ManageMenuScreen(
 }
 
 /**
- * Home screen that displays the menu list
+ * Home screen displaying menu list
+ * FlatList improves rendering efficiency (Meta Platforms Inc., 2025)
  */
 function HomeScreen(
   props: NativeStackScreenProps<RootStackParamList, 'HomeScreen'>
@@ -226,8 +289,7 @@ function HomeScreen(
       { text: 'Cancel', style: 'cancel' },
       {
         text: 'Yes',
-        onPress: () =>
-          setItems(items.filter((_, i) => i !== index)),
+        onPress: () => setItems(items.filter((_, i) => i !== index)),
       },
     ]);
   };
@@ -241,10 +303,7 @@ function HomeScreen(
         keyExtractor={(_, i) => i.toString()}
         renderItem={({ item, index }) => (
           <View style={styles.card}>
-            <Image
-              source={{ uri: item.image || '' }}
-              style={styles.cardImage}
-            />
+            <Image source={{ uri: item.image || '' }} style={styles.cardImage} />
             <View style={styles.cardContent}>
               <Text style={styles.cardTitle}>{item.Nameitem}</Text>
               <Text style={styles.cardDesc}>{item.description}</Text>
@@ -262,14 +321,10 @@ function HomeScreen(
         )}
       />
 
-      {/* Add New Item Button */}
       <TouchableOpacity
         style={styles.addButton}
         onPress={() =>
-          props.navigation.navigate('ManageScreen', {
-            items,
-            setItems,
-          })
+          props.navigation.navigate('ManageScreen', { items, setItems })
         }
       >
         <Text style={styles.addText}>Add New Item</Text>
@@ -279,7 +334,7 @@ function HomeScreen(
 }
 
 /**
- * Simple welcome screen that leads to the home page
+ * Welcome screen using layered UI elements and image backgrounds (Expo Docs, 2025)
  */
 function WelcomeScreen({
   navigation,
@@ -309,7 +364,7 @@ function WelcomeScreen({
 }
 
 /**
- * Stack navigation setup
+ * Stack Navigation Setup (React Navigation Contributors, 2025)
  */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -328,6 +383,7 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
 
 /**
  * Styles for the app
